@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lancaster Coffee Co. & Cafe — Lancaster, NY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16151a;
+    --ink-2:#211f26;
+    --paper:#f7f5f2;
+    --paper-2:#ffffff;
+    --gold:#e8b34d;
+    --gold-dark:#c8922f;
+    --clay:#8c6a56;
+    --line:#3a3840;
+    --line-light:#ddd8d0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.02;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--gold); color:var(--ink);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(247,245,242,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-light);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px; max-width:1180px; margin:0 auto;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .wordmark span{color:var(--gold-dark); font-style:italic; font-weight:400;}
+  nav.links{display:flex; align-items:center; gap:38px;}
+  nav.links a.nav-link{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:0.7;
+    transition:opacity 0.2s ease;
+  }
+  nav.links a.nav-link:hover{opacity:1;}
+  .order-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:var(--paper);
+    padding:12px 22px;
+    border-radius:100px;
+    transition:background 0.2s ease;
+  }
+  .order-btn:hover{background:var(--gold-dark);}
+  .burger{display:none; background:none; border:none; cursor:pointer;}
+  .burger span{display:block; width:24px; height:2px; background:var(--ink); margin:5px 0;}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    background:var(--ink);
+    color:var(--paper);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .marquee-track{
+    display:inline-block;
+    animation:scroll 28s linear infinite;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+  .marquee-track span{padding:0 20px; color:var(--gold);}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:100px 0 80px;}
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:60px;
+    align-items:end;
+  }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--clay);
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:clamp(3rem, 8vw, 6.4rem);
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--gold-dark);
+  }
+  .hero-side{
+    display:flex; flex-direction:column; gap:26px;
+    padding-bottom:10px;
+  }
+  .hero-side p{
+    font-size:1.05rem;
+    line-height:1.65;
+    color:var(--ink);
+    opacity:0.75;
+    max-width:340px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:15px 26px;
+    border-radius:100px;
+    display:inline-block;
+    transition:transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{background:var(--gold-dark); transform:translateY(-2px);}
+  .btn-outline{background:transparent; color:var(--ink); border:1px solid var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--paper);}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:110px 0;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    margin-bottom:18px;
+  }
+  .section-title{
+    font-size:clamp(2.2rem, 4.4vw, 3.6rem);
+    margin-bottom:8px;
+  }
+  .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--clay);
+    opacity:0.6;
+  }
+
+  /* ---------- ABOUT (duotone photo) ---------- */
+  .about{background:var(--paper-2); border-top:1px solid var(--line-light); border-bottom:1px solid var(--line-light);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:70px;
+    align-items:center;
+  }
+  .duotone{
+    position:relative;
+    overflow:hidden;
+    border-radius:2px;
+  }
+  .duotone img{
+    filter:grayscale(1) contrast(1.08) brightness(0.92);
+    width:100%; height:100%; object-fit:cover;
+  }
+  .duotone::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(160deg, rgba(232,179,77,0.34), rgba(22,21,26,0.5));
+    mix-blend-mode:multiply;
+  }
+  .about-photo{aspect-ratio:4/5;}
+  .about p{font-size:1.1rem; line-height:1.8; color:var(--ink); opacity:0.8; margin:0 0 20px;}
+  .about-note{
+    margin-top:22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--clay);
+    line-height:1.6;
+  }
+
+  /* ---------- MENU ---------- */
+  .menu{background:var(--paper);}
+  .menu-cols{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:60px;
+    margin-top:60px;
+  }
+  .menu-col h3{
+    font-size:1.5rem;
+    margin-bottom:4px;
+  }
+  .menu-col .sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--clay);
+    display:block;
+    margin-bottom:28px;
+  }
+  .m-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid var(--line-light);
+  }
+  .m-item .name{font-size:1rem;}
+  .m-item .name small{display:block; font-size:0.8rem; opacity:0.55; font-style:italic; margin-top:2px;}
+  .m-item .price{font-family:'IBM Plex Mono', monospace; color:var(--gold-dark); white-space:nowrap;}
+  .menu-cta{text-align:center; margin-top:60px;}
+  .menu-cta .fine{margin-top:16px; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; opacity:0.5;}
+
+  /* ---------- GALLERY (duotone masonry) ---------- */
+  .gallery{background:var(--ink); color:var(--paper);}
+  .gallery .eyebrow{color:var(--gold);}
+  .gallery .section-title{color:var(--paper);}
+  .g-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-auto-rows:120px;
+    gap:14px;
+    margin-top:60px;
+  }
+  .g-cell{grid-column:span 2; grid-row:span 2; overflow:hidden; border-radius:2px;}
+  .g-cell.tall{grid-row:span 3;}
+  .g-cell.wide{grid-column:span 3;}
+  .g-cell .duotone{width:100%; height:100%;}
+  .g-cell .duotone::after{
+    background:linear-gradient(160deg, rgba(232,179,77,0.28), rgba(22,21,26,0.55));
+  }
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--paper-2);}
+  .review-stack{
+    margin-top:60px;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .review-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:30px;
+    padding:38px 0;
+    border-top:1px solid var(--line-light);
+    align-items:start;
+  }
+  .review-row:last-child{border-bottom:1px solid var(--line-light);}
+  .review-row .who{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+  }
+  .review-row .stars{color:var(--gold-dark); font-size:0.85rem; margin-top:6px;}
+  .review-row blockquote{
+    margin:0;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:1.35rem;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .review-cta{margin-top:50px; text-align:center;}
+
+  /* ---------- VISIT ---------- */
+  .visit{background:var(--paper);}
+  .visit-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+    margin-top:60px;
+  }
+  .visit-info h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    margin:0 0 10px;
+  }
+  .visit-info .block{margin-bottom:36px;}
+  .visit-info p{margin:0; line-height:1.7; opacity:0.8;}
+  .visit-info .big-address{
+    font-family:'Fraunces', serif;
+    font-size:1.7rem;
+    font-weight:500;
+    margin:0 0 4px;
+  }
+  .visit-info a.plain{border-bottom:1px solid var(--gold-dark);}
+  .map-frame{
+    border-radius:2px;
+    overflow:hidden;
+    border:1px solid var(--line-light);
+    min-height:380px;
+    filter:grayscale(0.4) contrast(1.05);
+  }
+  .map-frame iframe{width:100%; height:100%; min-height:380px; border:0;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); color:var(--paper); padding-top:0;}
+  .footer-marquee{background:var(--ink); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .footer-inner{padding:60px 0 30px;}
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:40px;
+  }
+  .footer-word{font-family:'Fraunces', serif; font-size:1.4rem; font-weight:600; margin-bottom:10px;}
+  .footer-word span{color:var(--gold); font-style:italic; font-weight:400;}
+  footer h5{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 16px;
+  }
+  footer ul{list-style:none; margin:0; padding:0;}
+  footer li{margin-bottom:10px; opacity:0.75;}
+  footer a:hover{opacity:1; color:var(--gold);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px;
+    padding-top:26px; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; opacity:0.5;
+  }
+
+  @media (max-width: 900px){
+    nav.links{display:none;}
+    .burger{display:block;}
+    .hero-grid, .about-grid, .visit-grid{grid-template-columns:1fr;}
+    .menu-cols{grid-template-columns:1fr; gap:40px;}
+    .g-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:140px;}
+    .g-cell{grid-column:span 1 !important; grid-row:span 2 !important;}
+    .review-row{grid-template-columns:1fr; gap:10px;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+  nav.links.open{
+    display:flex; flex-direction:column; gap:20px;
+    position:absolute; top:100%; left:0; right:0;
+    background:var(--paper); border-bottom:1px solid var(--line-light);
+    padding:24px 32px 30px;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+  :focus-visible{outline:2px solid var(--gold-dark); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="wordmark">Lancaster Coffee Co. <span>& Cafe</span></div>
+    <nav class="links" id="navLinks">
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#menu">Menu</a>
+      <a class="nav-link" href="#gallery">Gallery</a>
+      <a class="nav-link" href="#reviews">Reviews</a>
+      <a class="nav-link" href="#visit">Visit</a>
+      <a class="order-btn" href="https://order.toasttab.com/online/lancaster-coffee-co-24-central-avenue" target="_blank" rel="noopener">Order Online</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Your Local Caffeine Dealer</span><span>24 Central Ave, Lancaster NY</span><span>Coffee</span><span>Breakfast</span><span>Bakery</span>
+    <span>Your Local Caffeine Dealer</span><span>24 Central Ave, Lancaster NY</span><span>Coffee</span><span>Breakfast</span><span>Bakery</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">Lancaster, New York — Est. Local</div>
+      <h1>Coffee, <em>done</em><br>with intent.</h1>
+    </div>
+    <div class="hero-side">
+      <p>Fresh-roasted coffee, hearty breakfast, and scratch bakery — made daily on Central Ave.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://order.toasttab.com/online/lancaster-coffee-co-24-central-avenue" target="_blank" rel="noopener">Order Ahead</a>
+        <a class="btn btn-outline" href="#menu">View Menu</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="duotone about-photo">
+      <img src="photos/clocktower-cup.jpg" alt="Coffee cup reading 'your local caffeine dealer' with the Lancaster clock tower in the background">
+    </div>
+    <div>
+      <div class="eyebrow">The Short Version</div>
+      <h2 class="section-title">Built for the neighborhood.</h2>
+      <p>Lancaster Coffee Co. & Cafe started with a simple idea: your neighborhood deserves a coffee shop that actually feels like the neighborhood. Every cup is pulled fresh, every pastry is baked in-house, and every regular gets to know the person behind the counter.</p>
+      <p>Whether it's a quick espresso on the way to work or a slow Sunday breakfast, this is a place built to be part of the everyday.</p>
+      <div class="about-note">Placeholder copy — swap in the real story of how the shop got started and who runs it.</div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="eyebrow">On The Menu</div>
+    <h2 class="section-title">What we make.</h2>
+    <div class="menu-cols">
+      <div class="menu-col">
+        <h3>Coffee</h3>
+        <span class="sub">Fresh-pulled, daily</span>
+        <div class="m-item"><span class="name">Drip Coffee<small>House blend, always brewing</small></span><span class="price">$3.25</span></div>
+        <div class="m-item"><span class="name">Espresso<small>Single or double</small></span><span class="price">$3.50</span></div>
+        <div class="m-item"><span class="name">Latte / Cappuccino<small>Hot or iced</small></span><span class="price">$4.75</span></div>
+        <div class="m-item"><span class="name">Cold Brew<small>Steeped 18 hours</small></span><span class="price">$4.25</span></div>
+      </div>
+      <div class="menu-col">
+        <h3>Breakfast</h3>
+        <span class="sub">Served all day</span>
+        <div class="m-item"><span class="name">Breakfast Sandwich<small>Egg, cheese, choice of meat</small></span><span class="price">$6.50</span></div>
+        <div class="m-item"><span class="name">Avocado Toast<small>Sourdough, chili flake</small></span><span class="price">$7.75</span></div>
+        <div class="m-item"><span class="name">Breakfast Burrito<small>Potato, egg, cheddar</small></span><span class="price">$7.25</span></div>
+        <div class="m-item"><span class="name">Yogurt Parfait<small>Granola, seasonal fruit</small></span><span class="price">$5.50</span></div>
+      </div>
+      <div class="menu-col">
+        <h3>Bakery</h3>
+        <span class="sub">Baked in-house</span>
+        <div class="m-item"><span class="name">Croissant<small>Butter or almond</small></span><span class="price">$3.75</span></div>
+        <div class="m-item"><span class="name">Muffins<small>Rotating daily flavors</small></span><span class="price">$3.50</span></div>
+        <div class="m-item"><span class="name">Macarons<small>Rotating daily flavors</small></span><span class="price">$3.25</span></div>
+        <div class="m-item"><span class="name">Cookies<small>Baked fresh every morning</small></span><span class="price">$2.75</span></div>
+      </div>
+    </div>
+    <div class="menu-cta">
+      <a class="btn btn-primary" href="https://order.toasttab.com/online/lancaster-coffee-co-24-central-avenue" target="_blank" rel="noopener">Order Ahead on Toast</a>
+      <div class="fine">Sample menu shown — replace with the real lineup and pricing.</div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="eyebrow">In The Shop</div>
+    <h2 class="section-title">A closer look.</h2>
+    <div class="g-grid">
+      <div class="g-cell tall"><div class="duotone"><img src="photos/waffles-storefront.jpg" alt="Waffles with berries, storefront in the background"></div></div>
+      <div class="g-cell"><div class="duotone"><img src="photos/coffee-macarons.jpg" alt="Coffee cup with macarons"></div></div>
+      <div class="g-cell"><div class="duotone"><img src="photos/macaron-case.jpg" alt="Bakery case full of macarons"></div></div>
+      <div class="g-cell wide"><div class="duotone"><img src="photos/flatlay-spread.jpg" alt="Sandwich, parfait, and coffee bean bag"></div></div>
+      <div class="g-cell"><div class="duotone"><img src="photos/wrap-lunch.jpg" alt="Wrap sandwich with chips"></div></div>
+      <div class="g-cell"><div class="duotone"><img src="photos/buffalo-cup.jpg" alt="Coffee cup with a buffalo statue"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="eyebrow">Word Of Mouth</div>
+    <h2 class="section-title">From our regulars.</h2>
+    <div class="review-stack">
+      <div class="review-row">
+        <div><div class="who">Pavlo E.</div><div class="stars">★★★★★</div></div>
+        <blockquote>By far the best coffee in the area — I'm not sure what they use, but it trumps every other coffee shop in the Buffalo area.</blockquote>
+      </div>
+      <div class="review-row">
+        <div><div class="who">Nicole M.</div><div class="stars">★★★★★</div></div>
+        <blockquote>My favorite coffee place. I always get an iced bees knees — worth the weekend drive. Get there early, the people and coffee are amazing.</blockquote>
+      </div>
+      <div class="review-row">
+        <div><div class="who">Shauna M.</div><div class="stars">★★★★★</div></div>
+        <blockquote>The nicest workers — everyone was so kind and helpful. I got the breakfast sandwich on a croissant. Totally recommend.</blockquote>
+      </div>
+    </div>
+    <div class="review-cta">
+      <a class="btn btn-outline" href="https://www.yelp.com/biz/lancaster-coffee-company-and-cafe-lancaster" target="_blank" rel="noopener">See Us on Yelp</a>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap visit-grid">
+    <div class="visit-info">
+      <div class="eyebrow">Find Us</div>
+      <div class="block">
+        <h4>Address</h4>
+        <p class="big-address">24 Central Ave</p>
+        <p>Lancaster, NY</p>
+      </div>
+      <div class="block">
+        <h4>Hours</h4>
+        <p>Monday: 8:00 AM – 2:00 PM<br>
+        Tuesday–Friday: 8:00 AM – 3:00 PM<br>
+        Saturday: 8:30 AM – 2:00 PM<br>
+        Sunday: 9:00 AM – 2:00 PM</p>
+      </div>
+      <div class="block">
+        <h4>Contact</h4>
+        <p><a class="plain" href="tel:+17163953385">(716) 395-3385</a><br>
+        <a class="plain" href="https://order.toasttab.com/online/lancaster-coffee-co-24-central-avenue" target="_blank" rel="noopener">Order ahead on Toast →</a></p>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe src="https://maps.google.com/maps?q=24%20Central%20Ave%2C%20Lancaster%2C%20NY&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Lancaster Coffee Co. & Cafe"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-word">Lancaster Coffee Co. <span>& Cafe</span></div>
+        <p style="opacity:0.6; max-width:280px; line-height:1.6;">24 Central Ave, Lancaster, NY</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#visit">Visit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="tel:+17163953385">(716) 395-3385</a></li>
+          <li><a href="https://www.instagram.com/lancastercoffeeco/?hl=en" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/lancastercoffeeco" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.yelp.com/biz/lancaster-coffee-company-and-cafe-lancaster" target="_blank" rel="noopener">Yelp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Lancaster Coffee Co. & Cafe</span>
+      <span>Lancaster, NY</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+
+</body>
+</html>
